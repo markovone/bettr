@@ -1,0 +1,19 @@
+{
+  "name": "@bettr/server",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon --watch src --watch ../client/react src/index-dev",
+    "build": "rspack build",
+    "prod": "npm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/register": "^7.25.9",
+    "ignore-styles": "^5.0.1",
+    "nodemon": "^3.1.9"
+  }
+}

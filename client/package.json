@@ -1,0 +1,21 @@
+{
+  "name": "@bettr/client",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rspack build --mode development --watch",
+    "serve": "rspack serve",
+    "build": "rspack build"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.1.5"
+  },
+  "devDependencies": {
+    "@rspack/cli": "^1.2.2",
+    "@rspack/core": "^1.2.2",
+    "css-loader": "^7.1.2",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4"
+  }
+}
