@@ -1,5 +1,5 @@
 
-export default function ({ title })
+export default function ({ title, app })
 {
  
     return (
@@ -9,12 +9,12 @@ export default function ({ title })
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-                <link href="index.css" rel="stylesheet" />
+                <link href="/index.css" rel="stylesheet" />
                 
-                <script src="index.js" defer></script>
+                <script src="/index.js" defer></script>
             </head>
             <body>
-
+                { app }
             </body>
         </html>
     )

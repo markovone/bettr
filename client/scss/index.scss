@@ -1,5 +1,28 @@
 @use 'globals';
+@use 'some-componenet' as someComponenet;
+
 
 body {
-    color: blue;
+    padding: 2em 0;
+}
+
+.content {
+    display: flex;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.logo {
+    &::before {
+        content: "";
+        display: block;
+        width: 1em; height: 1em;
+        margin-right: 5px;
+        background: #000;
+    }
+}
+
+    
+@media (min-width: 480px) {
+    @include someComponenet.minWidth480()
 }

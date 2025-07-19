@@ -5,16 +5,20 @@ export default function()
 {
     return (
         <header>
-            <nav>
+            <div className="logo">
+                BTTR
+            </div>
+
+            <nav className="">
                 <ul>
                     <li>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/tasks">Tasks</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/dashboard">Dashboard</NavLink>
+                        <NavLink to="/projects">Projects</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/about">About</NavLink>
+                        <NavLink to="/knowledge">Knowledge</NavLink>
                     </li>
                 </ul>
             </nav>

@@ -1,5 +1,17 @@
 {
     "name": "bettr",
     "private": true,
-    "workspaces": [ "client", "server" ]
+    "workspaces": [ "client", "server" ],
+    "devDependencies": {
+        "@rspack/cli": "^1.2.2",
+        "@rspack/core": "^1.2.2",
+        "css-loader": "^7.1.2",
+        "sass": "^1.83.4",
+        "sass-loader": "^16.0.4",
+        "@babel/preset-env": "^7.26.7",
+        "@babel/preset-react": "^7.26.3",
+        "@babel/register": "^7.25.9",
+        "ignore-styles": "^5.0.1",
+        "nodemon": "^3.1.9"
+    }
 }

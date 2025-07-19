@@ -1,0 +1,9 @@
+.bar {
+    color: green;
+}
+
+@mixin minWidth480() {
+    .bar {
+        color: red;
+    }
+}

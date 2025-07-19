@@ -1,6 +1,7 @@
 import { defineConfig } from '@rspack/cli'
 import { rspack, CopyRspackPlugin, CssExtractRspackPlugin } from '@rspack/core'
 
+// https://www.sitepoint.com/sass-mixin-media-merging/
 
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14']
 
