@@ -28,16 +28,26 @@ export const routes = [
 		},
 		children: [
 			{
-				id: 'tasks',
+				id: 'Tasks',
 				path: 'tasks',
 				label: 'tasks',	
 				element: <Suspense fallback={<div>Loading...</div>}><AsyncComponent /></Suspense>,
 				meta: {
 					title: 'Tasks'
-				}
+				},
+				children: [
+					{
+						id: 'TasksItem',
+						path: ':id',
+						element: <pages.TasksItem />,
+						meta: {
+							title: 'Tasks Item'
+						},						
+					}
+				]
 			},
 			{
-				id: 'projetcs',
+				id: 'Projetcs',
 				path: 'projects',
 				label: 'projects',	
 				element: <pages.Projects />,
@@ -46,20 +56,33 @@ export const routes = [
 				},
 				children: [
 					{
-						id: 'projectsProject',
+						id: 'ProjectsItem',
 						path: ':id',
-						element: <pages.Projects />,
-					}
+						element: <pages.ProjectsItem />,
+						meta: {
+							title: 'Projects Item'
+						},						
+					},
 				]
 			},
 			{
-				id: 'knowledge',
+				id: 'Knowledge',
 				path: 'knowledge',
 				label: 'knowledge',	
 				element: <pages.Knowledge />,
 				meta: {
 					title: 'Knowledge'
-				}
+				},
+				children: [
+					{
+						id: 'KnowledgeItem',
+						path: ':id',
+						element: <pages.KnowledgeItem />,
+						meta: {
+							title: 'Knowledge Item'
+						},						
+					},
+				]				
 			},
 		]
 	},

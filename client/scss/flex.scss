@@ -1,0 +1,64 @@
+[class*="flex-c"] {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  [class*="flex-r"] {
+    display: flex;
+    flex-direction: row;
+  }
+
+  [class*="flex-1-r"] {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+  
+  [class*="flex-r-c"],
+  [class*="flex-c-c"] {
+    justify-content: center;
+  }
+  
+  [class*="flex-r-b"],
+  [class*="flex-c-b"] {
+    justify-content: space-between;
+  }
+  
+  [class*="flex-r-s"],
+  [class*="flex-c-s"] {
+    justify-content: flex-start;
+  }
+  
+  [class*="flex-r-e"],
+  [class*="flex-c-e"] {
+    justify-content: flex-end;
+  }
+  
+  [class*="s-flex-r"],
+  [class*="s-flex-c"] {
+    align-items: flex-start;
+  }
+  
+  [class*="e-flex-r"],
+  [class*="e-flex-c"] {
+    align-items: flex-end;
+  }
+  
+  [class*="c-flex-r"],
+  [class*="c-flex-c"] {
+    align-items: center;
+  }
+  
+  [class*="flex-r-stretch"],
+  [class*="flex-c-stretch"] {
+    align-items: stretch;
+  }
+  
+  [class*="flex-r-wrap"] {
+    flex-wrap: wrap;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
+  

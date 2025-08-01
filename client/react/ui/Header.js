@@ -4,12 +4,12 @@ import { NavLink } from 'react-router'
 export default function()
 {
     return (
-        <header>
-            <div className="logo">
+        <div className="lay-header">
+            <header className="logo lay-toprow c-flex-r-e">
                 BTTR
-            </div>
+            </header>
 
-            <nav className="">
+            <nav className="nav-main">
                 <ul>
                     <li>
                         <NavLink to="/tasks">Tasks</NavLink>
@@ -22,6 +22,6 @@ export default function()
                     </li>
                 </ul>
             </nav>
-        </header>
+        </div>
     )
 }
