@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router'
+import { Calendar } from '../../../ui/Calendar'
 
 export default function()
 {
@@ -9,6 +10,8 @@ export default function()
                     <div className="lay-toprow c-flex-r">
                         <h1>Tasks List</h1>
                     </div>
+
+                    <Calendar />
                 </header>
                 
             </div>

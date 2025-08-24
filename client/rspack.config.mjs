@@ -40,6 +40,10 @@ export default defineConfig({
 				]
 			},
 			{
+				test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
+				type: 'asset/resource',
+			},
+			{
 				test: /\.scss$/,
 				use: [
 					CssExtractRspackPlugin.loader,
@@ -51,7 +55,13 @@ export default defineConfig({
 	},
 	plugins: [
 		new CopyRspackPlugin({
-			patterns: [{ from: 'assets' }],
+			patterns: [{ 
+				from: 'assets',
+				globOptions: {
+					ignore: ['**/img/icons/**'],
+				},
+				
+			}],
 		}),
 		new CssExtractRspackPlugin({})
 	  ],

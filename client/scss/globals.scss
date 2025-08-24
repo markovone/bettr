@@ -1,11 +1,25 @@
+:root {
+  --colorPrimary: #4242F4;
+  --colorPrimaryLight: #b0b0fc8f;
+}
+
 *, *:before, *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
     font-style: normal;
-};
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+input {
+	width: auto;
+	border: none;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');

@@ -6,7 +6,7 @@ import Document from './Document.js'
 import { matchRoute } from '../../client/utils/index.js'
 
 const server = express()
-const ssr = true
+const ssr = false
 let appSSR = null
 
 
