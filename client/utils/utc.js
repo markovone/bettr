@@ -40,6 +40,7 @@ const protoUTC = {
 
     toDateArray()
     {
+        // this.format().split('-').map(v=>parseInt(v))
         const d = this.getJSDate()
 
         return [
@@ -72,6 +73,11 @@ const protoUTC = {
     getDateString()
     {
         return this.getJSDate().toISOString().slice(0, 10)
+    },
+
+    getDaysOfMonth()
+    {
+        return this.toDateArray()
     },
 
     test()

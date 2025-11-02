@@ -4,7 +4,6 @@
 }
 
 .calendar {
-    container-type: size;
     display: grid;
     grid-template-columns: repeat(7, auto);
     justify-content: space-between;
@@ -15,8 +14,6 @@
     border-bottom: 1px solid #000;
     text-align: center;
 }
-
-
 
 .calendar__day {
     overflow: hidden;
@@ -53,15 +50,6 @@
     }
 }
 
-@container (height <= 83px) {
-
-    .calendar__day {
-        transition: none;
-    }
-
-}
-
-
 
 .calendar__toggle {
     outline: none;
@@ -77,5 +65,11 @@
             fill: #000;
         }
     }
+}
 
+.calendar__date-filter {
+    input {
+        field-sizing: content;
+        padding-left: 4px;
+    }
 }

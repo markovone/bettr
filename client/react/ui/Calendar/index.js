@@ -14,7 +14,8 @@ export const Calendar = () =>
     const calendarRef = useRef()
     const [ collapsed, setCollapsed ] = useState(true)
 
-    const dateSelected = utc(searchParams.get('date') || utc().getDateString())
+    const dateStr = searchParams.get('date') || utc().getDateString()
+    const dateSelected = utc(dateStr)
     const [ yearSelected, monthSelected ] = dateSelected.toArray()
 
     const firstOfMonth = utc([ yearSelected, monthSelected, 1 ])
@@ -59,8 +60,12 @@ export const Calendar = () =>
 
             </div>
 
-            <div className="e-flex-r-c">
-                <DateFilter dateSelected={ dateSelected } />
+            <div className="c-flex-r">
+                <DateFilter 
+                    dateStr={ dateStr }
+                    key={ dateSelected.format() } 
+                />
+
                 <button className="calendar__toggle" onClick={ () => setCollapsed(!collapsed) }>
                     <Icon fragment="arrow-down" />
                 </button>

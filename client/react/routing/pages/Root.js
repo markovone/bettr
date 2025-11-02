@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from 'react-router'
 import Header from '../../ui/Header'
 import { matchRoute } from '../../../utils'
-import { OAuth } from '../../ui/OAuth'
 
 export default function ()
 {
@@ -17,7 +16,6 @@ export default function ()
             <Header />
 
             <main className="flex-c">
-                <OAuth />
 
                 <Outlet />
             </main>

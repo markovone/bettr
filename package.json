@@ -3,8 +3,8 @@
     "private": true,
     "workspaces": [ "client", "server" ],
     "devDependencies": {
-        "@rspack/cli": "^1.2.2",
-        "@rspack/core": "^1.2.2",
+        "@rspack/cli": "^1.6.0",
+        "@rspack/core": "^1.6.0",
         "css-loader": "^7.1.2",
         "sass": "^1.83.4",
         "sass-loader": "^16.0.4",
