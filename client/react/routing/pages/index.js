@@ -6,9 +6,9 @@ import Projects from './Projects'
 import ProjectsItem from './Projects/Item'
 
 export { 
-    Projects, 
+    //Projects, 
     ProjectsItem, 
-    //Tasks,
+    Tasks,
     TasksItem,
     Knowledge,
     KnowledgeItem,

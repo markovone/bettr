@@ -1,9 +1,10 @@
 import { matchRoutes } from 'react-router'
 import { routes } from '../react/routing/routes'
 
-export const matchRoute = (path) => matchRoutes(routes, path)
-    .find(route => route.pathname === path)
+export const matchRoute = (path) => matchRoutes(routes, window.location.pathname)
+    .find(route => route.pathname === window.location.pathname)
     .route
+
 
 export const arrayFromRange = (start, stop, fn) => Array.from(
 	{ length: stop - start + 1 },

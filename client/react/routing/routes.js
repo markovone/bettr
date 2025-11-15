@@ -2,9 +2,10 @@ import { lazy, Suspense } from 'react'
 import Root from './pages/Root'
 import * as pages from './pages'
 
+
 // Componenets must be exported as default
 // If Component is imported somewhere in the bundle, it wont get code-splited
-const AsyncComponent = lazy(() => import('./pages/Tasks/index.js'))
+const AsyncComponent = lazy(() => import('./pages/Projects/index.js'))
 
 function Fallback()
 {
@@ -29,35 +30,54 @@ export const routes = [
 		children: [
 			{
 				id: 'Tasks',
-				path: 'tasks',
+				path: '/tasks/:date?',
 				label: 'tasks',	
-				element: <Suspense fallback={<div>Loading...</div>}><AsyncComponent /></Suspense>,
+				element: <pages.Tasks />,
 				meta: {
 					title: 'Tasks'
+				},
+				loader: async ({ params }) => {
+					// const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+					// const resJson = await res.json();
+					
+					console.log('Loader params:', params)
+					
+					return [
+						{
+							id: '123',
+							status: 'undone',
+							title: 'Undone Tasks'
+						},
+						{
+							id: '103',
+							status: 'done',
+							title: 'Done Tasks'
+						}
+					]
 				},
 				children: [
 					{
 						id: 'TasksItem',
-						path: ':id',
+						path: '/tasks/:date?/:id',
 						element: <pages.TasksItem />,
 						meta: {
-							title: 'Tasks Item'
-						},						
-					}
+							title: 'Tasks item'
+						},			
+					},
 				]
 			},
 			{
 				id: 'Projetcs',
-				path: 'projects',
+				path: '/projects',
 				label: 'projects',	
-				element: <pages.Projects />,
+				element: <Suspense fallback={<div>Loading...</div>}><AsyncComponent /></Suspense>,
 				meta: {
 					title: 'Projects'
 				},
 				children: [
 					{
 						id: 'ProjectsItem',
-						path: ':id',
+						path: '/projects/:id',
 						element: <pages.ProjectsItem />,
 						meta: {
 							title: 'Projects Item'
@@ -67,7 +87,7 @@ export const routes = [
 			},
 			{
 				id: 'Knowledge',
-				path: 'knowledge',
+				path: '/knowledge',
 				label: 'knowledge',	
 				element: <pages.Knowledge />,
 				meta: {
@@ -76,7 +96,7 @@ export const routes = [
 				children: [
 					{
 						id: 'KnowledgeItem',
-						path: ':id',
+						path: '/knowledge/:id',
 						element: <pages.KnowledgeItem />,
 						meta: {
 							title: 'Knowledge Item'
@@ -95,6 +115,8 @@ export const routes = [
 		}
 	}
 ]
+
+
 
 const reduceToNav = (obj, parent = null) =>
 	obj.reduce((result, item) => {

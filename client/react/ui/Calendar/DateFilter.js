@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { useSearchParams } from 'react-router'
+import { generatePath, useNavigate, useParams } from 'react-router'
+import { matchRoute } from '../../../utils'
+import utc from '../../../utils/utc'
 
-export const DateFilter = ({ dateStr }) =>
+export const DateFilter = () =>
 {
-    const [ searchParams, setSearchParams ] = useSearchParams()
+    const { date: dateStr = utc().getDateString() } = useParams()
 
     const dateArr = dateStr.split('-')
     const [ state, setState ] = useState(
@@ -12,7 +14,8 @@ export const DateFilter = ({ dateStr }) =>
             'month': dateArr[1],
             'year': dateArr[0]
         }
-    ) 
+    )
+    const navigate = useNavigate()
 
     const onChange = (e) => {
         // TODO date overflow
@@ -25,9 +28,10 @@ export const DateFilter = ({ dateStr }) =>
 
     const onEnter = (e) => {
         if (e.key === 'Enter') {
-            const d = `${state.year}-${state.month.padStart(2, '0')}-${state.date.padStart(2, '0')}`
+            const date = `${state.year}-${state.month.padStart(2, '0')}-${state.date.padStart(2, '0')}`
+            const path = generatePath(matchRoute().path, { date })
 
-            setSearchParams({ date:d })
+            navigate(path)
         }
     }
 

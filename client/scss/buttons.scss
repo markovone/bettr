@@ -1,0 +1,30 @@
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; padding: 0;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+
+    &[disabled] {
+        pointer-events: none;
+    }
+}
+
+.button--new {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: var(--colorPrimary500);
+    color: #fff;
+}
+
+.button--undone {
+    border: 1px solid #000;
+    background-color: transparent;
+}
+
+.button--done {
+    background-color: var(--colorGreen500);
+}

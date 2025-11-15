@@ -9,7 +9,7 @@ export const CalendarDay = ({ date, isActive, inCurrentWeek }) =>
     return (
         <Link 
             discover="none"
-            to={ `/tasks?date=${dateStr}`}
+            to={ `/tasks/${dateStr}`}
             className= {`calendar__day${inCurrentWeek ? ' --current' : ''} ${isActive ? ' --active' : ''} c-flex-c-c`}
         >
             <time dateTime={ dateStr }>

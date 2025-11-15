@@ -9,12 +9,13 @@ import { DateFilter } from './DateFilter'
 
 export const Calendar = () =>
 {
-    const params = useParams()
+    const { date = utc().getDateString() } = useParams()
     const [ searchParams, setSearchParams ] = useSearchParams()
     const calendarRef = useRef()
     const [ collapsed, setCollapsed ] = useState(true)
+    console.log(date)
 
-    const dateStr = searchParams.get('date') || utc().getDateString()
+    const dateStr = date
     const dateSelected = utc(dateStr)
     const [ yearSelected, monthSelected ] = dateSelected.toArray()
 
