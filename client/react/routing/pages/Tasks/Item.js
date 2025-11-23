@@ -8,7 +8,7 @@ export default function()
         id
     } = useParams()
 
-    const task = useRouteLoaderData('Tasks').find(item => item.id === id)
+    const task = useRouteLoaderData('Tasks').find(item => item.id == id)
 
 
     return (

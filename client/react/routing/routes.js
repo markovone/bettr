@@ -37,23 +37,10 @@ export const routes = [
 					title: 'Tasks'
 				},
 				loader: async ({ params }) => {
-					// const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
-					// const resJson = await res.json();
-					
-					console.log('Loader params:', params)
-					
-					return [
-						{
-							id: '123',
-							status: 'undone',
-							title: 'Undone Tasks'
-						},
-						{
-							id: '103',
-							status: 'done',
-							title: 'Done Tasks'
-						}
-					]
+					const res = await fetch(`/api/tasks`)
+					const resJson = await res.json()
+			
+					return resJson
 				},
 				children: [
 					{

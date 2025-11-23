@@ -1,15 +1,17 @@
 import { defineConfig } from '@rspack/cli'
 
-
 export default defineConfig({
 	entry: {
 		index: './src/index.js'
 	},
 	resolve: {
-		extensions: ['...', '.ts', '.tsx', '.jsx']
+		extensions: ['...', '.ts', '.tsx', '.jsx'],
 	},
 	target: 'node',
-	ignoreWarnings: [ /the request of a dependency is an expression/ ],
+	ignoreWarnings: [ 
+		/the request of a dependency is an expression/,
+		/pg-native/
+	],
 	module: {
 		rules: [
 			{

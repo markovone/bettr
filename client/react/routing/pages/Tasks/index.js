@@ -38,11 +38,11 @@ export default function()
                     <ul>
                         { data.map((task) => (
                             <li 
-                                key={ task.status }
+                                key={ task.title }
                                 className="list__item"
                             >
-                                <button className={`list__bullet button--${task.status}`}>
-                                    { task.status === 'done' ? <Icon fragment="check" size="70" /> : null }
+                                <button className={`list__bullet button--${task.state}`}>
+                                    { task.state === 1 ? <Icon fragment="check" size="70" /> : null }
                                 </button>
 
                                 <NavLink 

@@ -9,6 +9,7 @@
   "dependencies": {
     "@rspack/cli": "^1.6.0",
     "@rspack/core": "^1.6.0",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "pg": "^8.16.3"
   }
 }
