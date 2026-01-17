@@ -1,4 +1,12 @@
 import { Outlet } from 'react-router'
+import Editor from '../../../modules/editor/Editor'
+
+const initialValue = [
+    {
+        type: 'paragraph',
+        children: [{ text: 'A line of text in a paragraph.' }],
+    },
+]
 
 export default function()
 {
@@ -10,7 +18,8 @@ export default function()
                         <h1>Knowledge List</h1>
                     </div>
                 </header>
-                
+
+                <Editor initialValue={initialValue} />
             </div>
 
             <Outlet/>
