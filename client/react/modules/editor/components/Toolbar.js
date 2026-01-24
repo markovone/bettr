@@ -1,5 +1,5 @@
 import { useSlate } from 'slate-react'
-import { toggleMark, isMarkActive, toggleBlock, isBlockActive, isLinkActive, wrapLink, unwrapLink } from '../utils'
+import { toggleMark, isMarkActive, toggleBlock, isBlockActive, isLinkActive, wrapLink, unwrapLink, toggleList, isListActive } from '../utils'
 import HeadingSelector from './HeadingSelector'
 
 export default function Toolbar() {
@@ -49,12 +49,18 @@ export default function Toolbar() {
         }
     }
 
+    const handleBulletedListClick = (event) => {
+        event.preventDefault()
+        toggleList(editor, 'bulleted-list')
+    }
+
 
     const isBoldActive = isMarkActive(editor, 'bold')
     const isItalicActive = isMarkActive(editor, 'italic')
     const isUnderlineActive = isMarkActive(editor, 'underline')
     const isCodeBlockActive = isBlockActive(editor, 'code-block')
     const isLinkActiveState = isLinkActive(editor)
+    const isBulletedListActive = isListActive(editor, 'bulleted-list')
 
     return (
         <div className="editor-toolbar">
@@ -93,6 +99,13 @@ export default function Toolbar() {
                 className={`editor-toolbar__button ${isLinkActiveState ? 'editor-toolbar__button--active' : ''}`}
             >
                 🔗
+            </button>
+            <button
+                type="button"
+                onMouseDown={handleBulletedListClick}
+                className={`editor-toolbar__button ${isBulletedListActive ? 'editor-toolbar__button--active' : ''}`}
+            >
+                •
             </button>
         </div>
     )

@@ -4,11 +4,17 @@ import { Slate, Editable, withReact } from 'slate-react'
 import { renderElement, renderLeaf } from './renderers'
 import Toolbar from './components/Toolbar'
 import { withLinks } from './plugins/withLinks'
+import { withLists } from './plugins/withLists'
+import { handleKeyDown as handleEditorKeyDown } from './keyHandlers'
 
 
 
 export default function Editor({ initialValue }) {
-    const editor = useMemo(() => withLinks(withReact(createEditor())), [])
+    const editor = useMemo(() => withLists(withLinks(withReact(createEditor()))), [])
+
+    const handleKeyDown = useCallback((event) => {
+        handleEditorKeyDown(editor, event)
+    }, [editor])
 
     return (
         <Slate editor={ editor } initialValue={ initialValue }>
@@ -17,6 +23,7 @@ export default function Editor({ initialValue }) {
                 renderElement={ renderElement }
                 renderLeaf={ renderLeaf }
                 placeholder="Start typing..."
+                onKeyDown={ handleKeyDown }
             />
         </Slate>
     )

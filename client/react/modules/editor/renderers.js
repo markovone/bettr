@@ -5,6 +5,9 @@ import Underline from './components/Underline'
 import CodeBlock from './components/CodeBlock'
 import Link from './components/Link'
 import Heading from './components/Heading'
+import BulletedList from './components/BulletedList'
+import ListItem from './components/ListItem'
+import ListItemContent from './components/ListItemContent'
 
 
 export const renderElement = (props) => {
@@ -22,6 +25,12 @@ export const renderElement = (props) => {
         case 'heading-5':
         case 'heading-6':
             return <Heading {...props} />
+        case 'bulleted-list':
+            return <BulletedList {...props} />
+        case 'list-item':
+            return <ListItem {...props} />
+        case 'list-item-content':
+            return <ListItemContent {...props} />
         default:
             return <Paragraph {...props} />
     }

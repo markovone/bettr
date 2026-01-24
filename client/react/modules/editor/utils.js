@@ -86,3 +86,48 @@ export const setBlockType = (editor, blockType) => {
         { match: n => Element.isElement(n) && Editor.isBlock(editor, n) }
     )
 }
+
+export const isListActive = (editor, format = 'bulleted-list') => {
+    const [match] = Editor.nodes(editor, {
+        match: n => Element.isElement(n) && n.type === format,
+    })
+    return !!match
+}
+
+export const toggleList = (editor, format = 'bulleted-list') => {
+    const isActive = isListActive(editor, format)
+
+    if (isActive) {
+        // Unwrap the list
+        // split: true allows partial unwrapping of selected items only
+        Transforms.unwrapNodes(editor, {
+            match: n => Element.isElement(n) && n.type === format,
+            split: true,
+        })
+
+        // Unwrap list-item-content wrappers
+        Transforms.unwrapNodes(editor, {
+            match: n => Element.isElement(n) && n.type === 'list-item-content',
+            split: true,
+        })
+
+        // Convert list items back to paragraphs
+        Transforms.setNodes(
+            editor,
+            { type: 'paragraph' },
+            { match: n => Element.isElement(n) && n.type === 'list-item' }
+        )
+    } else {
+        // Convert current blocks to list items (only top-level blocks, not nested ones)
+        Transforms.setNodes(
+            editor,
+            { type: 'list-item' },
+            { match: n => Element.isElement(n) && Editor.isBlock(editor, n) && n.type !== 'list-item-content' }
+        )
+        // Wrap in list container
+        const listNode = { type: format, children: [] }
+        Transforms.wrapNodes(editor, listNode, {
+            match: n => Element.isElement(n) && n.type === 'list-item',
+        })
+    }
+}
