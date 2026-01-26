@@ -47,17 +47,59 @@ export const withLists = (editor) => {
 						}
 					)
 					return
-				} 
-				// else if (foundBlockElement || node.children.length === 0) {
-				// 	// Only block elements exist or empty list-item
-				// 	// Insert an empty content wrapper at the start
-				// 	Transforms.insertNodes(
-				// 		editor,
-				// 		{ type: 'list-item-content', children: [{ text: '' }] },
-				// 		{ at: [...path, 0] }
-				// 	)
-				// 	return
-				// }
+				}
+			}
+		}
+
+		if (Element.isElement(node) && node.type === 'list-item-content') {
+			// Ensure the first child is a paragraph (or block element)
+			const firstChild = node.children[0]
+			const hasParagraph = firstChild && Element.isElement(firstChild) && Editor.isBlock(editor, firstChild)
+
+			if (!hasParagraph) {
+				// Wrap the first set of text/inline elements in a paragraph
+				const childrenToWrap = []
+
+				for (let i = 0; i < node.children.length; i++) {
+					const child = node.children[i]
+
+					if (Element.isElement(child)) {
+						// Check if this is a block element
+						if (Editor.isBlock(editor, child)) {
+							break
+						} else {
+							// Inline element (like link)
+							childrenToWrap.push(i)
+						}
+					} else {
+						// Text node
+						childrenToWrap.push(i)
+					}
+				}
+
+				if (childrenToWrap.length > 0) {
+					// Wrap the leading text/inline elements in a paragraph
+					Transforms.wrapNodes(
+						editor,
+						{ type: 'paragraph', children: [] },
+						{
+							at: path,
+							match: (n, p) => {
+								// Match only the children at the indices we identified
+								return p.length === path.length + 1 && childrenToWrap.includes(p[p.length - 1])
+							}
+						}
+					)
+					return
+				} else if (node.children.length > 0) {
+					// If all children are block elements, insert an empty paragraph at the beginning
+					Transforms.insertNodes(
+						editor,
+						{ type: 'paragraph', children: [{ text: '' }] },
+						{ at: [...path, 0] }
+					)
+					return
+				}
 			}
 		}
 

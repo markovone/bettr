@@ -1,7 +1,7 @@
 export default function ListItemContent({ attributes, children }) {
 	return (
-		<span {...attributes}>
+		<div {...attributes}>
 			{children}
-		</span>
+		</div>
 	)
 }
