@@ -1,5 +1,6 @@
 import { useParams, useRouteLoaderData } from "react-router"
 import utc from "../../../../utils/utc"
+import { useState } from "react"
 
 export default function()
 {
@@ -10,12 +11,17 @@ export default function()
 
     const task = useRouteLoaderData('Tasks').find(item => item.id == id)
 
+    const [ content, setContent ] = useState(task ? task.content : [])   
+    
+    console.log(content)
+
 
     return (
-        <section className="lay-item flex-r">
+        <section className="layout-item flex-r">
             <header>
-                <div className="lay-toprow c-flex-r">
-                    <h2>{ task && task.title }</h2>
+                <div className="layout-toprow c-flex-r">
+                    
+
                 </div>
             </header>
         </section>

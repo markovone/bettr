@@ -4,9 +4,10 @@ import { NavLink } from 'react-router'
 export default function()
 {
     return (
-        <div className="lay-header">
-            <header className="logo lay-toprow c-flex-r-e">
+        <div className="layout-header">
+            <header className="logo layout-toprow c-flex-r-e">
                 BTTR
+                <NavLink className="logo-icon" to="/" />
             </header>
 
             <nav className="nav-main">

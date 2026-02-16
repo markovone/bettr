@@ -1,110 +1,56 @@
-import { Outlet } from 'react-router'
-import Editor from '../../../modules/editor/Editor'
+import { NavLink, Outlet, useRouteLoaderData } from 'react-router'
+import { Icon } from '../../../ui/Icon'
 
-const initialValue = [
-	{
-		type: 'heading-1',
-		children: [{ text: 'Main Heading' }],
-	},
-	{
-		type: 'paragraph',
-		children: [
-			{ text: 'This is a paragraph with a ' },
-			{
-				type: 'link',
-				url: 'https://example.com',
-				children: [{ text: 'link inside' }],
-			},
-			{ text: ' it.' },
-		],
-	},
-	{
-		type: 'bulleted-list',
-		children: [
-			{
-				type: 'list-item',
-				children: [
-					{
-						type: 'list-item-content',
-						children: [
-							{
-								type: 'paragraph',
-								children: [{ text: 'foo' }],
-							},
-							{
-								type: 'paragraph',
-								children: [{ text: 'container' }],
-							},
-						],
-					},
-				],
-			},
-			{
-				type: 'list-item',
-				children: [
-					{
-						type: 'list-item-content',
-						children: [
-							{
-								type: 'paragraph',
-								children: [{ text: 'bar' }],
-							},
-						],
-					},
-					{
-						type: 'bulleted-list',
-						children: [
-							{
-								type: 'list-item',
-								children: [
-									{
-										type: 'list-item-content',
-										children: [
-											{
-												type: 'paragraph',
-												children: [{ text: 'bar.foo' }],
-											},
-										],
-									},
-								],
-							},
-							{
-								type: 'list-item',
-								children: [
-									{
-										type: 'list-item-content',
-										children: [
-											{
-												type: 'paragraph',
-												children: [{ text: 'bar.bar' }],
-											},
-										],
-									},
-								],
-							},
-						],
-					},
-				],
-			},
-		],
-	},
-]
+
 
 export default function()
 {
-    return (
-        <section className="flex-1-r">
-            <div className="lay-list">
-                <header>
-                    <div className="lay-toprow c-flex-r">
-                        <h1>Knowledge List</h1>
-                    </div>
-                </header>
+	const data = useRouteLoaderData('Knowledge')
 
-                <Editor initialValue={initialValue} />
-            </div>
+	return (
+		<section className="flex-1-r">
+			<div className="layout-list">
+				<header className="list-header layout-toprow c-flex-r">
+					<div className="list-header-left c-flex-r">
+						<h1>Knowledge</h1>
 
-            <Outlet/>
-        </section>
-    )
+						<NavLink
+							className=""
+							to="/knowledge/new"
+						>
+							<div className="button--new">
+								<Icon fragment="plus" />
+							</div>
+							</NavLink>
+					</div>
+
+
+				</header>
+
+				<div className="list-controls"></div>
+
+				<div className="list">
+
+					<ul>
+						{ data && data.map((item) => (
+							<li
+								key={ item.item_id }
+								className="list__item"
+							>
+								<NavLink
+									className="list__item__title"
+									to={ `/knowledge/${item.item_id}` }
+								>
+									{ item.title || 'Untitled' }
+								</NavLink>
+							</li>
+						)) }
+					</ul>
+				</div>
+			</div>
+
+			<Outlet/>
+		</section>
+	)
 }
+

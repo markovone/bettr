@@ -1,10 +1,10 @@
-button {
+[class*="button--"] {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0; padding: 0;
     border: none;
-    border-radius: 4px;
+    // border-radius: 4px;
     background-color: transparent;
 
     &[disabled] {
@@ -13,6 +13,7 @@ button {
 }
 
 .button--new {
+    width: 18px; height: 18px;
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
@@ -20,11 +21,3 @@ button {
     color: #fff;
 }
 
-.button--0 {
-    border: 1px solid #000;
-    background-color: transparent;
-}
-
-.button--1 {
-    background-color: var(--colorGreen500);
-}

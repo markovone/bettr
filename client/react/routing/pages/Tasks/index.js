@@ -12,9 +12,9 @@ export default function()
 
     return (
         <section className="flex-1-r">
-            <div className="lay-list">
+            <div className="layout-list">
                 <header>
-                    <div className="lay-toprow c-flex-r">
+                    <div className="layout-toprow c-flex-r">
                         <h1>Schedule</h1>
                     </div>
 
@@ -38,7 +38,7 @@ export default function()
                     <ul>
                         { data.map((task) => (
                             <li 
-                                key={ task.title }
+                                key={ task.content[0].children }
                                 className="list__item"
                             >
                                 <button className={`list__bullet button--${task.state}`}>
@@ -49,7 +49,7 @@ export default function()
                                     className="list__item__title"
                                     to={ `/tasks/${dateStr}/${task.id}` }
                                 >
-                                    { task.title }
+                                    { task.content[0].children }
                                 </NavLink>
                             </li>
                         ))}

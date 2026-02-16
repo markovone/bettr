@@ -9,7 +9,7 @@ import { handleKeyDown as handleEditorKeyDown } from './keyHandlers'
 
 
 
-export default function Editor({ initialValue }) {
+export default function Editor({ initialValue, onChange }) {
 	const editor = useMemo(() => withLists(withLinks(withReact(createEditor()))), [])
 
 
@@ -17,8 +17,13 @@ export default function Editor({ initialValue }) {
 		handleEditorKeyDown(editor, event)
 	}, [editor])
 
+	const handleChange = useCallback((value) => {
+		// Call parent's onChange with the new value
+		onChange?.(value)
+	}, [onChange])
+
 	return (
-		<Slate editor={ editor } initialValue={ initialValue }>
+		<Slate editor={ editor } initialValue={ initialValue } onChange={ handleChange }>
 			<Toolbar />
 			<Editable
 				renderElement={ renderElement }

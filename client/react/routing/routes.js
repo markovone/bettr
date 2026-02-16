@@ -40,7 +40,7 @@ export const routes = [
 					const res = await fetch(`/api/tasks`)
 					const resJson = await res.json()
 			
-					return resJson
+					return []
 				},
 				children: [
 					{
@@ -80,6 +80,12 @@ export const routes = [
 				meta: {
 					title: 'Knowledge'
 				},
+				loader: async ({ params }) => {
+					const res = await fetch(`/api/knowledge`)
+					const resJson = await res.json()
+			
+					return resJson
+				},
 				children: [
 					{
 						id: 'KnowledgeItem',
@@ -87,7 +93,7 @@ export const routes = [
 						element: <pages.KnowledgeItem />,
 						meta: {
 							title: 'Knowledge Item'
-						},						
+						}				
 					},
 				]				
 			},

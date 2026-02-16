@@ -15,8 +15,7 @@ export default function ()
         <div className="content flex-r-c">
             <Header />
 
-            <main className="flex-c">
-
+            <main>
                 <Outlet />
             </main>
         </div>

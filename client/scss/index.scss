@@ -8,8 +8,6 @@
 @use 'editor';
 @use 'some-componenet' as someComponenet;
 
-$heightTopRow: 64px;
-
 
 body {
     padding: 0 0;
@@ -18,46 +16,47 @@ body {
 .content {
     width: 1000px;
     margin: 0 auto;
+    padding-top: 24px;
 }
 
 main {
     flex: 5;
-    border-left: 4px solid #000;
 }
 
 
-.lay-header, .lay-list, .lay-item  {
-    padding: 0 20px;
+.layout-list {
+    padding-left: 30px;
 }
 
-.lay-header {
+.layout-header {
     width: 160px;
 }
 
-.lay-list {
+.layout-list {
     width: 360px;
 }
 
-.lay-item {
+.layout-item {
     width: 480px;
-    border-left: 4px solid #000;
+    margin-left: -12px;
 }
 
-.lay-toprow {
-    height: $heightTopRow;
+.layout-toprow {
+    height: 32px;
 }
 
 .logo {
+    position: relative;
     font-size: 36px;
     font-weight: 700;
+}
 
-    &::before {
-        content: "";
-        display: block;
-        width: 24px; height: 24px;
-        margin-right: 5px;
-        background: #000;
-    }
+.logo-icon {
+    width: 24px; height: 24px;
+    margin-left: 10px;
+    margin-right: -10px;
+    background: #000;
+    transform: rotate(45deg);
 }
 
 
@@ -71,6 +70,10 @@ h1 {
 }
 
 .nav-main {
+    padding-top: 16px;
+    padding-right: 20px;
+    border-right: 4px solid #000;
+
     ul {
         list-style-type: none;
         text-align: right;
@@ -90,6 +93,61 @@ h1 {
         }
     }
 }
+
+
+
+
+.list-header {
+    gap: 20px;
+    
+    &::after {
+        content: "";
+        flex-grow: 1;
+        align-self: end;
+        justify-self: end;
+        display: block;
+        height: 18px;
+        border-right: 4px solid #000;
+        border-top: 4px solid #000;
+    }
+}
+
+.list-header-left {
+    gap: 10px;
+}
+
+.list-controls {
+    &::before {
+        content: "";
+        display: block;
+        width: 100%; height: 16px;
+        border-right: 4px solid #000;
+    }
+}
+
+.item {
+
+	&__title {
+		width: 100%; height: 20px;
+		font-size: 24px;
+		font-weight: 600;
+		border: none;
+		outline: none;
+		background: transparent;
+	}
+}
+
+.item-utils {
+    height: 48px;
+}
+
+
+.item__bullet {
+    width: 20px; height: 20px;
+    margin-right: 8px;
+    background: #000;
+}
+
 
 [class^="icon"] {
     svg {
@@ -111,9 +169,6 @@ h1 {
         height: 11px;
     }
 }
-
-
-
     
 @media (min-width: 480px) {
     @include someComponenet.minWidth480()

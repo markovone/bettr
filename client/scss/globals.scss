@@ -2,12 +2,18 @@
   --colorPrimary500: #7e7eff;
   --colorPrimary300: #b0b0fc8f;
   --colorGreen500: #1EAF77;
+
+  --heightTopHeader: 32px;
 }
 
 *, *:before, *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+
+body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
