@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react'
 import Root from './pages/Root'
 import * as pages from './pages'
+import { collections } from '../../../server/src/db/data-app.js'
 
+
+export const categories = [ 'tasks', 'projects', 'knowledge', 'health', 'money' ]
 
 // Componenets must be exported as default
 // If Component is imported somewhere in the bundle, it wont get code-splited
@@ -17,6 +20,26 @@ function NotFound()
 	return 'Not found'
 }
 
+async function loader ({ params, request }) 
+{
+	const { collection_name = '', item_id } = params
+
+	if (!collections[collection_name]) {
+		throw new Response("Not Found", { status: 404 });
+	}
+
+	const url = '/api/collection' 
+		+ (collection_name ? `/${collection_name}` : '') 
+		+ (item_id ? `/${item_id}` : '')
+
+	const res = await fetch(url)
+	const resJson = await res.json()
+
+	// console.log('loader', { params, request, resJson })
+
+	return resJson
+}
+
 export const routes = [
 	{
 		id: 'root',
@@ -29,73 +52,28 @@ export const routes = [
 		},
 		children: [
 			{
-				id: 'Tasks',
-				path: '/tasks/:date?',
-				label: 'tasks',	
-				element: <pages.Tasks />,
+				id: 'CollectionItem',
+				path: '/:collection_name?/:item_id?',
+				label: 'Collection Item',	
+				element: <pages.Collection />,
 				meta: {
-					title: 'Tasks'
+					title: 'Collection Item'
 				},
-				loader: async ({ params }) => {
-					const res = await fetch(`/api/tasks`)
-					const resJson = await res.json()
-			
-					return []
-				},
-				children: [
-					{
-						id: 'TasksItem',
-						path: '/tasks/:date?/:id',
-						element: <pages.TasksItem />,
-						meta: {
-							title: 'Tasks item'
-						},			
-					},
-				]
-			},
-			{
-				id: 'Projetcs',
-				path: '/projects',
-				label: 'projects',	
-				element: <Suspense fallback={<div>Loading...</div>}><AsyncComponent /></Suspense>,
-				meta: {
-					title: 'Projects'
-				},
-				children: [
-					{
-						id: 'ProjectsItem',
-						path: '/projects/:id',
-						element: <pages.ProjectsItem />,
-						meta: {
-							title: 'Projects Item'
-						},						
-					},
-				]
-			},
-			{
-				id: 'Knowledge',
-				path: '/knowledge',
-				label: 'knowledge',	
-				element: <pages.Knowledge />,
-				meta: {
-					title: 'Knowledge'
-				},
-				loader: async ({ params }) => {
-					const res = await fetch(`/api/knowledge`)
-					const resJson = await res.json()
-			
-					return resJson
-				},
-				children: [
-					{
-						id: 'KnowledgeItem',
-						path: '/knowledge/:id',
-						element: <pages.KnowledgeItem />,
-						meta: {
-							title: 'Knowledge Item'
-						}				
-					},
-				]				
+				loader: loader,
+				shouldRevalidate: ({ currentParams, nextParams, currentUrl, nextUrl }) => {
+					// Forced revalidation (useRevalidator) keeps the URL unchanged — allow it.
+					const isForcedRevalidation =
+						currentUrl.pathname === nextUrl.pathname &&
+						currentUrl.search === nextUrl.search
+
+					return (
+						isForcedRevalidation
+						||
+						currentParams.collection_name !== nextParams.collection_name
+						||
+						currentUrl.search !== nextUrl.search
+					)
+				}
 			},
 		]
 	},

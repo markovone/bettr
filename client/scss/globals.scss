@@ -4,6 +4,12 @@
   --colorGreen500: #1EAF77;
 
   --heightTopHeader: 32px;
+
+  --layoutHeader: 150px;
+  --layoutList: 300px;
+  --layoutItem: 600px;
+  --layoutGap: 24px;
+  --layoutTopIndent: 120px;
 }
 
 *, *:before, *:after {
@@ -24,9 +30,25 @@ a {
     text-decoration: none;
 }
 
+h1, h2 {
+    font-weight: 700;
+    font-size: 28px;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+
+ol, ul {
+	margin: 0; padding: 0;
+}
+
 ul {
     list-style-type: none;
 }
+
+
 
 input {
 	width: auto;

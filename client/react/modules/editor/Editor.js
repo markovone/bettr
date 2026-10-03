@@ -1,12 +1,10 @@
-import { useMemo, useCallback, useEffect } from 'react'
+import { useMemo, useCallback } from 'react'
 import { createEditor, Editor as SlateEditor } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 import { renderElement, renderLeaf } from './renderers'
-import Toolbar from './components/Toolbar'
 import { withLinks } from './plugins/withLinks'
 import { withLists } from './plugins/withLists'
 import { handleKeyDown as handleEditorKeyDown } from './keyHandlers'
-
 
 
 export default function Editor({ initialValue, onChange }) {
@@ -24,7 +22,7 @@ export default function Editor({ initialValue, onChange }) {
 
 	return (
 		<Slate editor={ editor } initialValue={ initialValue } onChange={ handleChange }>
-			<Toolbar />
+			{/* <Toolbar /> */}
 			<Editable
 				renderElement={ renderElement }
 				renderLeaf={ renderLeaf }

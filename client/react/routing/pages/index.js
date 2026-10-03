@@ -1,15 +1,13 @@
 import Tasks from './Tasks'
 import TasksItem from './Tasks/Item'
-import Knowledge from './Knowledge'
-import KnowledgeItem from './Knowledge/Item'
 import Projects from './Projects'
 import ProjectsItem from './Projects/Item'
+import Collection from './Collection'
 
 export { 
-    //Projects, 
+    Projects, 
     ProjectsItem, 
+    Collection,
     Tasks,
     TasksItem,
-    Knowledge,
-    KnowledgeItem,
 }

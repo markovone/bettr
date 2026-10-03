@@ -9,6 +9,6 @@ const db = new Client({
 
 db.connect()
 
-export function queryDb(queryText, params) {
-    return db.query(queryText, params)
+export function queryDb(queryWithparams) {
+    return db.query(queryWithparams)
 }

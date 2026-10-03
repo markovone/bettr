@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router'
 import Header from '../../ui/Header'
 import { matchRoute } from '../../../utils'
 
+
 export default function ()
 {
     const location = useLocation()
@@ -12,12 +13,9 @@ export default function ()
     }
 
     return(
-        <div className="content flex-r-c">
+        <div className="page flex-r">
             <Header />
-
-            <main>
-                <Outlet />
-            </main>
+            <Outlet />
         </div>
     )
 }

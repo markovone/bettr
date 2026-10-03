@@ -1,26 +1,33 @@
 import { NavLink } from 'react-router'
+import { Icon } from './Icon'
+import { categories } from '../routing/routes'
 
 
 export default function()
 {
     return (
-        <div className="layout-header">
+        <div className="layout-header e-flex-c">
             <header className="logo layout-toprow c-flex-r-e">
-                BTTR
-                <NavLink className="logo-icon" to="/" />
+                <NavLink to="/" >
+                    BTTR    
+                </NavLink>
             </header>
+
+            <div className="toolbar__main c-flex-r-e">
+                <Icon fragment="search" size={ 16 } />
+            </div>
 
             <nav className="nav-main">
                 <ul>
-                    <li>
-                        <NavLink to="/tasks">Tasks</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/projects">Projects</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/knowledge">Knowledge</NavLink>
-                    </li>
+
+                    {
+                        categories.map((item) => (
+                            <li key={ item }>
+                                <NavLink to={ `/${item}` }>{ item }</NavLink>
+                            </li>
+                        ))
+                    }
+
                 </ul>
             </nav>
         </div>
